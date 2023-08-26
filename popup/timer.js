@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
   let reset_button_ref = document.getElementById("reset");
   let cycleSwitch = document.getElementById('cycleSwitch');
   
-  let workSeconds_25_5 = 0.05 * 60
-  let restSeconds_25_5 = 0.05 * 60
-  let workSeconds_45_15 = 0.05 * 60
-  let restSeconds_45_15 = 0.05 * 60
+  let workSeconds_25_5 = 25 * 60
+  let restSeconds_25_5 = 5 * 60
+  let workSeconds_45_15 = 45 * 60
+  let restSeconds_45_15 = 15 * 60
 
 
 
