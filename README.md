@@ -16,4 +16,4 @@ A Pomodoro Timer Firefox browser extension that improves productivity with work 
 * Progress bar 
 * Pause/Play button 
 * Allow extension to run when switching to a different tab & clicking out of the extension pop-up
-
+* Have a clock image display above the timer when there is no active interval, and have a clock animatino play when there is an active interval ongoing. 
