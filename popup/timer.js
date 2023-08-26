@@ -2,13 +2,44 @@
 document.addEventListener("DOMContentLoaded", function() {
   let interval;
   let intervalType = "";
+  let cycleMode = false
+
+  let work_25_button_ref = document.getElementById("work_25_button");
+  let work_45_button_ref = document.getElementById("work_45_button");
+  let reset_button_ref = document.getElementById("reset");
+  let cycleSwitch = document.getElementById('cycleSwitch');
+  
+  let workSeconds_25_5 = 0.05 * 60
+  let restSeconds_25_5 = 0.05 * 60
+  let workSeconds_45_15 = 0.05 * 60
+  let restSeconds_45_15 = 0.05 * 60
+
+
 
   function formatTime(time) {
     return time < 10 ? "0" + time: time; 
   }
-  
-  function setCountdown(stateSeconds, type, onComplete) {
 
+  function executeCycle(workSeconds, restSeconds) {
+    setCountdown(workSeconds, "work", function() {
+      setCountdown(restSeconds, "rest", function() {
+        intervalType = ""
+        updateIntervalDisplay();
+        if (cycleMode) {
+          cycle(workSeconds, restSeconds);
+          // let nextIntervalSeconds = intervalType === "work" ? restSeconds : workSeconds;
+          // let nextIntervalType = intervalType === "work" ? "rest" : "work";
+          // executeCycle(nextIntervalSeconds, nextIntervalType);
+        }
+      });
+    })
+  }
+
+  function cycle(workSeconds, restSeconds) {
+    executeCycle(workSeconds, restSeconds)
+  }
+
+  function setCountdown(stateSeconds, type, onComplete) {
     clearInterval(interval);
     intervalType = type;
     updateIntervalDisplay();
@@ -24,20 +55,17 @@ document.addEventListener("DOMContentLoaded", function() {
         clearInterval(interval);
         var timerDisplay = document.getElementById("timer");
         timerDisplay.textContent = "00:00";
-        console.log(`the ${stateSeconds / 60} minutes are up!`);
         new Audio('beep.wav').play();
         if (onComplete) {
           onComplete();
         }
-        
         updateIntervalDisplay();
+        
       }
     }, 1000);
   }
 
   function updateIntervalDisplay() {
-    console.log(`Update interval display has been called!, intervalDisplay = ${document.getElementById('intervalDisplay').innerHTML}`)
-
     var intervalDisplay = document.getElementById("intervalDisplay")
     if (intervalType === "work") {
       intervalDisplay.style.display = "block"; // Show the div
@@ -50,46 +78,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   } 
 
-  let work_25_button_ref = document.getElementById("work_25_button");
-  let work_45_button_ref = document.getElementById("work_45_button");
-  let reset_button_ref = document.getElementById("reset");
-
-
-  work_25_button_ref.addEventListener("click", function() {
-    console.log("work 25 minutes button has been pressed!")
-    let workMinutes = .05
-    let workSeconds = workMinutes * 60 
-    let restMinutes = .05
-    let restSeconds = restMinutes * 60        
-
-    setCountdown(workSeconds, "work", function() {
-      console.log("the work stage has ended")
-      setCountdown(restSeconds, "rest", function() {
-        intervalType = ""
-        updateIntervalDisplay();
-        console.log("the rest stage has ended")
-      });
-
-    })
+  work_25_button_ref.addEventListener("click", function() { 
+    executeCycle(workSeconds_25_5, restSeconds_25_5)
   });
 
   work_45_button_ref.addEventListener("click", function() {
-    console.log("work 45 minutes button has been pressed!")
-
-    let workMinutes = .05
-    let workSeconds = workMinutes * 60 
-    let restMinutes = .05
-    let restSeconds = restMinutes * 60 
-
-    setCountdown(workSeconds, "work", function() {
-      console.log("the work stage has ended")
-      setCountdown(restSeconds, "rest", function() {
-        intervalType = ""
-        updateIntervalDisplay();
-        console.log("the rest stage has ended")
-      });
-
-    })
+    executeCycle(workSeconds_45_15, restSeconds_45_15)
   });
 
   reset_button_ref.addEventListener("click", function() {
@@ -100,6 +94,9 @@ document.addEventListener("DOMContentLoaded", function() {
     updateIntervalDisplay();
   })
 
+  cycleSwitch.addEventListener('change', function() {
+    cycleMode = this.checked;
+  })
 
 
 });
