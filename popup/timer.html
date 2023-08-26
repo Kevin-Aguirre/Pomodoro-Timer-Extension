@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-
 <html>
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="timer.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
   </head>
 
 <body>
   <div id="popup-content">
-    <button>Button 1</button>
-    <button>Button 2</button>
-    <button>Button 3</button>
-    <button type="reset">Reset</button>
+    <div class="timer" id="timer">00:00</div>
+    <button id="work_25_button">25 - 5</button>
+    <button id="work_45_button">45 - 15</button>
+    <button id="reset" type="reset">Reset</button>
   </div>
   <div id="error-content" class="hidden">
     <p>Couldn't start QPomo</p><p>Try again.</p>
@@ -19,4 +20,4 @@
   <script src="timer.js"></script>
 </body>
 
-</html>     
+</html>       

@@ -6,15 +6,27 @@ html, body {
   display: none;
 }
 
-button {
+.timer, button {
   border: none;
   width: 100%;
   margin: 3% auto;
-  padding: 4px;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 20px;
+  font-family: Arial;
+  border-radius: 4px;
+}
+
+.timer {   
+  background-color: #d36860;
+  padding-top: 4px; 
+  padding-bottom: 4px;
+}
+
+button {
   cursor: pointer;
   background-color: #E5F2F2;
+  padding: 4px;
+
 }
 
 button:hover {
