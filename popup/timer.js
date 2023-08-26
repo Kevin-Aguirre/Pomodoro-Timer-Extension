@@ -1,15 +1,19 @@
 
 document.addEventListener("DOMContentLoaded", function() {
   let interval;
+  let intervalType = "";
 
   function formatTime(time) {
     return time < 10 ? "0" + time: time; 
   }
   
-  function setCountdown(stateSeconds, onComplete) {
-    clearInterval(interval); // Clear any ongoing timer
-    console.log("i am now in the function setCountdown");
+  function setCountdown(stateSeconds, type, onComplete) {
+
+    clearInterval(interval);
+    intervalType = type;
+    updateIntervalDisplay();
     interval = setInterval(function() {
+      updateIntervalDisplay();  
       if (stateSeconds > 0) {
         var minutes = Math.floor(stateSeconds / 60);
         var seconds = stateSeconds % 60;
@@ -25,9 +29,26 @@ document.addEventListener("DOMContentLoaded", function() {
         if (onComplete) {
           onComplete();
         }
+        
+        updateIntervalDisplay();
       }
     }, 1000);
   }
+
+  function updateIntervalDisplay() {
+    console.log(`Update interval display has been called!, intervalDisplay = ${document.getElementById('intervalDisplay').innerHTML}`)
+
+    var intervalDisplay = document.getElementById("intervalDisplay")
+    if (intervalType === "work") {
+      intervalDisplay.style.display = "block"; // Show the div
+      intervalDisplay.innerText   = "work";
+    } else if (intervalType === "rest") {
+      intervalDisplay.style.display = "block"; // Show the div
+      intervalDisplay.innerText = "rest";
+    } else {
+      intervalDisplay.style.display = "none"; // Hide the div
+    }
+  } 
 
   let work_25_button_ref = document.getElementById("work_25_button");
   let work_45_button_ref = document.getElementById("work_45_button");
@@ -35,31 +56,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   work_25_button_ref.addEventListener("click", function() {
-    let workMinutes = .10
+    console.log("work 25 minutes button has been pressed!")
+    let workMinutes = .05
     let workSeconds = workMinutes * 60 
     let restMinutes = .05
-    let restSeconds = restMinutes * 60 
+    let restSeconds = restMinutes * 60        
 
-    setCountdown(workSeconds, function() {
-      setCountdown(restSeconds);
+    setCountdown(workSeconds, "work", function() {
+      console.log("the work stage has ended")
+      setCountdown(restSeconds, "rest", function() {
+        intervalType = ""
+        updateIntervalDisplay();
+        console.log("the rest stage has ended")
+      });
+
     })
   });
 
   work_45_button_ref.addEventListener("click", function() {
-    let workMinutes = .30
+    console.log("work 45 minutes button has been pressed!")
+
+    let workMinutes = .05
     let workSeconds = workMinutes * 60 
-    let restMinutes = .15
+    let restMinutes = .05
     let restSeconds = restMinutes * 60 
 
-    setCountdown(workSeconds, function() {
-      setCountdown(restSeconds);
-    })  
+    setCountdown(workSeconds, "work", function() {
+      console.log("the work stage has ended")
+      setCountdown(restSeconds, "rest", function() {
+        intervalType = ""
+        updateIntervalDisplay();
+        console.log("the rest stage has ended")
+      });
+
+    })
   });
 
   reset_button_ref.addEventListener("click", function() {
     clearInterval(interval);
     var timerDisplay = document.getElementById("timer");
     timerDisplay.textContent = "00:00";
+    intervalType = "";
+    updateIntervalDisplay();
   })
 
 
