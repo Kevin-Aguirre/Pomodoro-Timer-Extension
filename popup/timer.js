@@ -27,9 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         updateIntervalDisplay();
         if (cycleMode) {
           cycle(workSeconds, restSeconds);
-          // let nextIntervalSeconds = intervalType === "work" ? restSeconds : workSeconds;
-          // let nextIntervalType = intervalType === "work" ? "rest" : "work";
-          // executeCycle(nextIntervalSeconds, nextIntervalType);
+
         }
       });
     })
@@ -69,10 +67,10 @@ document.addEventListener("DOMContentLoaded", function() {
     var intervalDisplay = document.getElementById("intervalDisplay")
     if (intervalType === "work") {
       intervalDisplay.style.display = "block"; // Show the div
-      intervalDisplay.innerText   = "work";
+      intervalDisplay.innerText   = "Work";
     } else if (intervalType === "rest") {
       intervalDisplay.style.display = "block"; // Show the div
-      intervalDisplay.innerText = "rest";
+      intervalDisplay.innerText = "Rest";
     } else {
       intervalDisplay.style.display = "none"; // Hide the div
     }
