@@ -9,7 +9,7 @@ A Pomodoro Timer Firefox browser extension that improves productivity with work 
 * Reset Button: Resets the timer
 * Cycle Mode: Enable a cycle mode to automatically repeat work and break intervals continously.
 
-## Future Features
+## Upcoming Features
 * Custom Work | Break time interval
 * Theme variety 
 * Send alerts to browser when interval changes 
