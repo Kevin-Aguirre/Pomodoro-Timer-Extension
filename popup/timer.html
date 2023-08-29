@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="timer.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+  </head>
+
+<body>
+  <div id="popup-content">
+    <div class="timer" id="timer">00:00</div>
+    <div class="intervalDisplay" id="intervalDisplay"></div>
+    <button id="work_25_button">25 - 5</button>
+    <button id="work_45_button">45 - 15</button>
+    <button id="custom_button">
+      <input id="custom-work-minutes" type="text" placeholder="  " maxlength="2">
+      <div class="custom-colon">-</div>
+      <input id="custom-rest-minutes" type="text" placeholder="  " maxlength="2">
+    </button>
+    <button id="reset" type="reset">Reset</button>
+    <label class="switch">
+      <input id="cycleSwitch" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+    <div class="switch-label" id="switch-label">Continous Mode</div>
+  </div>
+  <div id="error-content" class="hidden">
+    <p>Couldn't start QPomo</p><p>Try again.</p>
+  </div>
+  <script src="timer.js"></script>
+</body>
+
+</html>       
