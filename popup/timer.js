@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let work_25_button_ref = document.getElementById("work_25_button");
   let work_45_button_ref = document.getElementById("work_45_button");
+  let custom_button_ref = document.getElementById('custom_button');
   let reset_button_ref = document.getElementById("reset");
   let cycleSwitch = document.getElementById('cycleSwitch');
   
@@ -83,6 +84,19 @@ document.addEventListener("DOMContentLoaded", function() {
   work_45_button_ref.addEventListener("click", function() {
     executeCycle(workSeconds_45_15, restSeconds_45_15)
   });
+
+  custom_button_ref.addEventListener("click", function() {
+    custom_work_minutes = Number(document.getElementById('custom-work-minutes').value) 
+    custom_rest_minutes = Number(document.getElementById('custom-rest-minutes').value)  
+    if ((Number.isInteger(custom_work_minutes)) && (Number.isInteger(custom_rest_minutes))) {
+      custom_work_minutes *= 60
+      custom_rest_minutes *= 60   
+      executeCycle(custom_work_minutes, custom_rest_minutes);
+
+    } 
+
+
+  })
 
   reset_button_ref.addEventListener("click", function() {
     clearInterval(interval);

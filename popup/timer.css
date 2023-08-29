@@ -76,6 +76,24 @@ button[type="reset"]:active {
   background-color: #EAEA9D;
 }
 
+#custom-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#custom-work-minutes {
+ width: 15px;
+}
+
+.custom-colon {
+  display: inline-block;
+}
+
+#custom-rest-minutes {
+width: 15px;
+}
 
 
  /* The switch - the box around the slider */
@@ -146,3 +164,4 @@ input:checked + .slider:before {
   text-align: center;
   font-family: Arial;
 }
+
