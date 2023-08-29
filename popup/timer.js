@@ -28,7 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function executeCycle(workSeconds, restSeconds) {
     setCountdown(workSeconds, "work", function() {
+      alert(`Work Interval Over\nMinutes Worked: ${workSeconds / 60}`)
       setCountdown(restSeconds, "rest", function() {
+        alert(`Rest Interval Over\nMinutes Rested: ${restSeconds / 60}`)
         intervalType = ""
         updateIntervalDisplay();
         if (cycleMode) {
@@ -122,6 +124,5 @@ document.addEventListener("DOMContentLoaded", function() {
   cycleSwitch.addEventListener('change', function() {
     cycleMode = this.checked;
   })
-
 
 });
